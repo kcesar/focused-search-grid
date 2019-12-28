@@ -8,24 +8,89 @@
 </head>
 
 <body>
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-        placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  <main class="container" role="main">
+    <h1 class="text-center">Focused Search Grid</h1>
+    <div class="row">
+      <div class="col text-center">
+        This tool outputs GeoJSON files that can be used in SARTopo. This website saves offline, so as long as you
+        visit it once with WiFi, it should continue to work in the field
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <div class="row">
+      <div class="col">
+        <div class="mx-auto w-50 p-3">
+          <form id="grid-form">
+            <fieldset>
+              <legend class="text-center">Center Coordinate</legend>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input class="form-control" id="latitude" name="latitude" size="30" type="number" min="-90" max="90"
+                      step="any" placeholder="47.608013" required />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input class="form-control" id="longitude" name="longitude" size="30" type="number" min="-180"
+                      max="180" step="any" placeholder="-122.335167" required />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend class="text-center">Grid options</legend>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="radius">Radius (meters)</label>
+                    <input class="form-control" id="radius" name="radius" size="30" type="number" value="500" min="0"
+                      required />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="num-rings">Number of rings</label>
+                    <select class="form-control" id="num-rings" name="numRings">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3" selected>3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="use-multiple-segments"
+                      name="useMultipleSegments" checked>
+                    <label class="form-check-label" for="use-multiple-segments">
+                      Split each circle into multiple segments
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="show-labels" name="showLabels" checked>
+                    <label class="form-check-label" for="show-labels">
+                      Show labels in each segment
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="row">
+              <div class="col">
+                <button type="submit" class="btn btn-primary  float-right">Generate GeoJSON</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <script src="main.js"></script>
+  </main>
+  <script src=" main.js"></script>
 </body>
 
 </html>

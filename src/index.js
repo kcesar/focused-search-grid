@@ -1,5 +1,5 @@
 import 'bootstrap';
 import './style.scss';
-import test from './test';
+import gridForm from './grid-form';
 
-test();
+gridForm(document.getElementById('grid-form'));
