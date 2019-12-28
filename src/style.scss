@@ -1,17 +1,28 @@
-
-
-.container {
-  padding-top: 10px;
-}
-
+@import '~bootstrap/scss/bootstrap';
 /* Hide HTML5 Up and Down arrows. */
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
-@import "~bootstrap/scss/bootstrap";
+main {
+  padding-top: 10px;
+}
+
+#preview-map {
+  border: solid;
+  height: 100%;
+  @include media-breakpoint-down(md) {
+    height: 300px;
+  }
+}
+
+.right-column-container {
+  display: flex;
+  flex-direction: column;
+}
