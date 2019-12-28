@@ -2,9 +2,10 @@
   "name": "focused-search-grid",
   "version": "0.0.1",
   "description": " website for generating a SARTopo geojson file based around a lat/long coordinate ",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/kcesar/focused-search-grid/issues"
   },
-  "homepage": "https://github.com/kcesar/focused-search-grid#readme"
+  "homepage": "https://github.com/kcesar/focused-search-grid#readme",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
