@@ -1,4 +1,5 @@
 const path = require('path');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const dest = path.resolve(__dirname, 'dist');
 
@@ -8,6 +9,7 @@ module.exports = {
     filename: 'main.js',
     path: dest,
   },
+  plugins: [new WorkboxPlugin.GenerateSW()],
   module: {
     rules: [
       {
