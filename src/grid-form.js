@@ -30,7 +30,7 @@ function isFormDataValid(formData) {
 
 function getSegmentTitle({ circleIndex, segmentIndex }) {
   if (circleIndex === 0) {
-    return 110 + segmentIndex;
+    return 100;
   }
 
   const numSegmentsInPreviousCircle = 2 ** (circleIndex + 1);
@@ -54,7 +54,7 @@ function getGeoJSON({ circles, formData }) {
     properties: {
       'marker-symbol': 'c:target1',
       'marker-color': DEFAULT_COLOR,
-      title: '100',
+      title: 'center',
       class: 'Marker',
     },
   };
@@ -72,7 +72,7 @@ function getGeoJSON({ circles, formData }) {
             fill: color,
             'fill-opacity': 0.1,
             description: '',
-            title: getSegmentTitle({ circleIndex, segmentIndex }),
+            title: getSegmentTitle({ circleIndex, segmentIndex }).toString(),
             class: 'Shape',
             gpstype: 'TRACK',
           },
