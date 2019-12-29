@@ -63,10 +63,8 @@ export default function preview({ previewElement, formElement }) {
         );
         addOverlay({ formData, map });
         map.setView([formData.latitude, formData.longitude], 13);
-        console.log('show');
         $(previewElement).removeClass('invisible');
       } else {
-        console.log('hide');
         $(previewElement).addClass('invisible');
       }
     });
