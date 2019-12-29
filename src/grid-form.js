@@ -44,7 +44,7 @@ function getSegmentTitle({ circleIndex, segmentIndex }) {
 }
 
 function getGeoJSON({ circles, formData }) {
-  const { latitude, longitude, useRandomColors } = formData;
+  const { latitude, longitude, useRandomColors, showLabels } = formData;
   const point = {
     type: 'Feature',
     geometry: {
@@ -54,7 +54,7 @@ function getGeoJSON({ circles, formData }) {
     properties: {
       'marker-symbol': 'c:target1',
       'marker-color': DEFAULT_COLOR,
-      title: 'center',
+      title: showLabels ? 'center' : '',
       class: 'Marker',
     },
   };
@@ -72,7 +72,9 @@ function getGeoJSON({ circles, formData }) {
             fill: color,
             'fill-opacity': 0.1,
             description: '',
-            title: getSegmentTitle({ circleIndex, segmentIndex }).toString(),
+            title: showLabels
+              ? getSegmentTitle({ circleIndex, segmentIndex }).toString()
+              : '',
             class: 'Shape',
             gpstype: 'TRACK',
           },
