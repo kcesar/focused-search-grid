@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import randomcolor from 'randomcolor';
+import FileSaver from 'file-saver';
 import { equalAreaBullseye, bullseye } from 'going-in-circles';
 import { DEFAULT_COLOR } from './constants';
 
@@ -121,7 +122,7 @@ function getGeoJSON({ circles, formData }) {
     type: 'FeatureCollection',
     features: [point, ...circleFeatures],
   };
-  return JSON.stringify(geoJSON, null, 2);
+  return JSON.stringify(geoJSON);
 }
 
 function handleSubmit(e) {
@@ -141,30 +142,12 @@ function handleSubmit(e) {
         numCircles,
       });
   const geoJSON = getGeoJSON({ circles, formData });
-  const blob = new Blob([geoJSON], { type: 'text/plain' });
-  const newEvent = document.createEvent('MouseEvents');
-  const a = document.createElement('a');
-  a.download = formData.filename || 'focus_search_grid.json';
-  a.href = window.URL.createObjectURL(blob);
-  a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-  newEvent.initEvent(
-    'click',
-    true,
-    false,
-    window,
-    0,
-    0,
-    0,
-    0,
-    0,
-    false,
-    false,
-    false,
-    false,
-    0,
-    null
-  );
-  a.dispatchEvent(newEvent);
+  const filename = formData.filename || 'focus_search_grid.json';
+  const geoBlob = new Blob([geoJSON], {
+    type: 'application/json',
+    name: filename,
+  });
+  FileSaver.saveAs(geoBlob, filename);
 }
 
 export { getFormData, isFormDataValid };
