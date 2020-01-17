@@ -68,6 +68,24 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
+                        <label for="segmentArea"
+                          >Segment area (meters&#xb2;)</label
+                        >
+                        <input
+                          class="form-control"
+                          id="segmentArea"
+                          name="segmentArea"
+                          size="30"
+                          type="number"
+                          value="1000"
+                          data-last-value="1000"
+                          min="1"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
                         <label for="radius">Radius (meters)</label>
                         <input
                           class="form-control"
@@ -76,11 +94,15 @@
                           size="30"
                           type="number"
                           value="500"
+                          data-last-value="500"
                           min="1"
+                          disabled
                           required
                         />
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="num-rings">Number of rings</label>
@@ -115,6 +137,18 @@
                   </div>
                   <div class="row">
                     <div class="col">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="segments-have-same-area"
+                          name="segmentsHaveSameArea"
+                          checked
+                        />
+                        <label class="form-check-label" for="use-random-colors">
+                          Make each segment have the same area
+                        </label>
+                      </div>
                       <div class="form-check">
                         <input
                           class="form-check-input"
