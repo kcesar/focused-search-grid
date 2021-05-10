@@ -74,5 +74,6 @@ export default function preview({ previewElement, formElement }) {
       } else {
         $(previewElement).addClass('invisible');
       }
-    });
+    })
+    .trigger('change');
 }

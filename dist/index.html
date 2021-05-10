@@ -39,7 +39,7 @@
                           min="-90"
                           max="90"
                           step="any"
-                          placeholder="47.608013"
+                          value="47.608013"
                           required
                         />
                       </div>
@@ -56,7 +56,7 @@
                           min="-180"
                           max="180"
                           step="any"
-                          placeholder="-122.335167"
+                          value="-122.335167"
                           required
                         />
                       </div>
@@ -106,17 +106,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="num-rings">Number of rings</label>
-                        <select
-                          class="form-control"
-                          id="num-rings"
+                        <input type="number" 
+                          class="form-control" 
+                          id="num-rings" 
                           name="numCircles"
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3" selected>3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
+                          min="1" 
+                          max="5" 
+                          value="3" />
                       </div>
                     </div>
                   </div>
