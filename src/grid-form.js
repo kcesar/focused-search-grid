@@ -12,14 +12,11 @@ const NUMBER_FIELDS = [
   'radius',
 ];
 
-const handleSegmentsChange = e => {
+const handleSegmentsChange = (e) => {
   const radius = $('#radius');
   const segmentArea = $('#segmentArea');
   if (e.target.checked) {
-    radius
-      .prop('disabled', true)
-      .data('last-value', radius.val())
-      .val('nope');
+    radius.prop('disabled', true).data('last-value', radius.val()).val('nope');
     segmentArea.prop('disabled', false).val(segmentArea.data('last-value'));
   } else {
     radius.prop('disabled', false).val(radius.data('last-value'));
@@ -49,7 +46,7 @@ function getFormData(element) {
 
 function isFormDataValid(formData) {
   return (
-    NUMBER_FIELDS.every(name => !Number.isNaN(formData[name])) &&
+    NUMBER_FIELDS.every((name) => !Number.isNaN(formData[name])) &&
     formData.latitude >= -90 &&
     formData.latitude <= 90 &&
     formData.longitude >= -180 &&

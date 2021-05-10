@@ -65,7 +65,7 @@ export default function preview({ previewElement, formElement }) {
     .on('change', () => {
       const formData = getFormData(formElement);
       if (isFormDataValid(formData)) {
-        map.eachLayer(layer =>
+        map.eachLayer((layer) =>
           layer === tileLayer ? null : map.removeLayer(layer)
         );
         addOverlay({ formData, map });

@@ -19,6 +19,7 @@ module.exports = {
         loader: 'eslint-loader',
         options: {
           emitWarning: true,
+          fix: true,
         },
       },
       {
@@ -44,8 +45,13 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: function() {
-                return [require('precss'), require('autoprefixer')];
+              postcssOptions: {
+                plugins: [
+                  [
+                    "autoprefixer",
+                    {},
+                  ]
+                ]
               },
             },
           },
@@ -54,11 +60,17 @@ module.exports = {
           },
         ],
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.png$/,
-        loader: 'url-loader',
-        query: { mimetype: 'image/png' },
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              mimetype: 'image/png'
+            }
+          }
+        ],
       },
     ],
   },
