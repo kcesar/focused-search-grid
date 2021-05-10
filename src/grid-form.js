@@ -1,39 +1,14 @@
 import $ from 'jquery';
 import randomcolor from 'randomcolor';
 import FileSaver from 'file-saver';
-import { equalAreaBullseye, bullseye } from 'going-in-circles';
+import { equalAreaBullseye } from 'going-in-circles';
 import { DEFAULT_COLOR } from './constants';
 
-const NUMBER_FIELDS = [
-  'latitude',
-  'longitude',
-  'numCircles',
-  'segmentArea',
-  'radius',
-];
-
-const handleSegmentsChange = (e) => {
-  const radius = $('#radius');
-  const segmentArea = $('#segmentArea');
-  if (e.target.checked) {
-    radius.prop('disabled', true).data('last-value', radius.val()).val('nope');
-    segmentArea.prop('disabled', false).val(segmentArea.data('last-value'));
-  } else {
-    radius.prop('disabled', false).val(radius.data('last-value'));
-    segmentArea
-      .prop('disabled', true)
-      .data('last-value', segmentArea.val())
-      .val('nope');
-  }
-};
+const NUMBER_FIELDS = ['latitude', 'longitude', 'numCircles', 'segmentArea'];
 
 function getFormData(element) {
   const formData = Object.fromEntries(new FormData(element));
-  for (const name of [
-    'useRandomColors',
-    'showLabels',
-    'segmentsHaveSameArea',
-  ]) {
+  for (const name of ['useRandomColors', 'showLabels']) {
     formData[name] = formData[name] === 'on';
   }
 
@@ -51,8 +26,7 @@ function isFormDataValid(formData) {
     formData.latitude <= 90 &&
     formData.longitude >= -180 &&
     formData.longitude <= 180 &&
-    ((formData.segmentsHaveSameArea && formData.segmentArea > 0) ||
-      (!formData.segmentsHaveSameArea && formData.radius > 0))
+    formData.segmentArea > 0
   );
 }
 
@@ -125,19 +99,13 @@ function getGeoJSON({ circles, formData }) {
 function handleSubmit(e) {
   e.preventDefault();
   const formData = getFormData(e.target);
-  const { latitude, longitude, numCircles, radius } = formData;
+  const { latitude, longitude, numCircles } = formData;
   const center = { lat: latitude, long: longitude };
-  const circles = formData.segmentsHaveSameArea
-    ? equalAreaBullseye({
-        center,
-        area: formData.segmentArea,
-        numCircles,
-      })
-    : bullseye({
-        center,
-        radius,
-        numCircles,
-      });
+  const circles = equalAreaBullseye({
+    center,
+    area: formData.segmentArea,
+    numCircles,
+  });
   const geoJSON = getGeoJSON({ circles, formData });
   const filename = formData.filename || 'focus_search_grid.json';
   const geoBlob = new Blob([geoJSON], {
@@ -150,9 +118,4 @@ function handleSubmit(e) {
 export { getFormData, isFormDataValid };
 export default function gridForm(element) {
   $(element).on('submit', handleSubmit);
-  const sameAreaCheckbox = $(element).find('#segments-have-same-area');
-  sameAreaCheckbox.on('change', handleSegmentsChange);
-  handleSegmentsChange({
-    target: { checked: sameAreaCheckbox.is(':checked') },
-  });
 }

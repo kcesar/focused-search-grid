@@ -1,24 +1,18 @@
 import $ from 'jquery';
 import leaflet from 'leaflet';
 import randomcolor from 'randomcolor';
-import { equalAreaBullseye, bullseye } from 'going-in-circles';
+import { equalAreaBullseye } from 'going-in-circles';
 import { isFormDataValid, getFormData } from './grid-form';
 import { DEFAULT_COLOR } from './constants';
 
 function addOverlay({ formData, map }) {
-  const { latitude, longitude, numCircles, radius } = formData;
+  const { latitude, longitude, numCircles } = formData;
   const center = { lat: latitude, long: longitude };
-  const circles = formData.segmentsHaveSameArea
-    ? equalAreaBullseye({
-        center,
-        area: formData.segmentArea,
-        numCircles,
-      })
-    : bullseye({
-        center,
-        radius,
-        numCircles,
-      });
+  const circles = equalAreaBullseye({
+    center,
+    area: formData.segmentArea,
+    numCircles,
+  });
   for (const circle of circles) {
     const color = formData.useRandomColors ? randomcolor() : DEFAULT_COLOR;
     for (const segment of circle.segments) {
@@ -69,7 +63,7 @@ export default function preview({ previewElement, formElement }) {
           layer === tileLayer ? null : map.removeLayer(layer)
         );
         addOverlay({ formData, map });
-        map.setView([formData.latitude, formData.longitude], 13);
+        map.setView([formData.latitude, formData.longitude], 16);
         $(previewElement).removeClass('invisible');
       } else {
         $(previewElement).addClass('invisible');
