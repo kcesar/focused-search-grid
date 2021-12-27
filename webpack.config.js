@@ -1,5 +1,6 @@
 const path = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const dest = path.resolve(__dirname, 'dist');
 
@@ -9,19 +10,15 @@ module.exports = {
     filename: 'main.js',
     path: dest,
   },
-  plugins: [new WorkboxPlugin.GenerateSW()],
+  plugins: [
+    new WorkboxPlugin.GenerateSW(),
+    new ESLintPlugin({
+      fix: true,
+      emitWarning: true,
+    }),
+  ],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
-          fix: true,
-        },
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -46,12 +43,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  [
-                    "autoprefixer",
-                    {},
-                  ]
-                ]
+                plugins: [['autoprefixer', {}]],
               },
             },
           },
@@ -67,9 +59,9 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              mimetype: 'image/png'
-            }
-          }
+              mimetype: 'image/png',
+            },
+          },
         ],
       },
     ],
@@ -77,7 +69,8 @@ module.exports = {
   devServer: {
     https: true,
     port: 3000,
-    contentBase: dest,
-    inline: true,
+    static: {
+      directory: dest,
+    },
   },
 };
