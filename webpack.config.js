@@ -1,6 +1,5 @@
 const path = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 const dest = path.resolve(__dirname, 'dist');
 
@@ -10,13 +9,7 @@ module.exports = {
     filename: 'main.js',
     path: dest,
   },
-  plugins: [
-    new WorkboxPlugin.GenerateSW(),
-    new ESLintPlugin({
-      fix: true,
-      emitWarning: true,
-    }),
-  ],
+  plugins: [new WorkboxPlugin.GenerateSW()],
   module: {
     rules: [
       {
