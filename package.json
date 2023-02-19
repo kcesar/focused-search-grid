@@ -4,10 +4,10 @@
   "description": " website for generating a SARTopo geojson file based around a lat/long coordinate ",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack serve --mode=development",
-    "prod": "webpack --mode=production"
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "dev": "npm run start & npm run watch",
+    "start": "serve dist"
   },
   "repository": {
     "type": "git",
@@ -20,22 +20,14 @@
   },
   "homepage": "https://github.com/kcesar/focused-search-grid#readme",
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
-    "babel-loader": "^9.1.2",
-    "css-loader": "^6.7.3",
-    "node-sass": "^8.0.0",
-    "postcss": "^8.4.21",
-    "postcss-loader": "^7.0.2",
-    "prettier": "^2.8.4",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup": "^3.17.1",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-workbox": "^6.2.0",
     "sass": "^1.58.3",
-    "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1",
-    "workbox-webpack-plugin": "^6.5.4"
+    "serve": "^14.2.0"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
