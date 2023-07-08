@@ -20,21 +20,21 @@
   },
   "homepage": "https://github.com/kcesar/focused-search-grid#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.4.0",
-    "rollup": "^3.17.1",
-    "rollup-plugin-scss": "^3.0.0",
-    "rollup-plugin-workbox": "^6.2.0",
-    "sass": "^1.58.3",
+    "@rollup/plugin-commonjs": "^25.0.2",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "rollup": "^3.26.2",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-workbox": "^8.0.1",
+    "sass": "^1.63.6",
     "serve": "^14.2.0"
   },
   "dependencies": {
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.0",
     "file-saver": "^2.0.5",
     "going-in-circles": "0.1.0",
-    "jquery": "^3.6.3",
-    "leaflet": "^1.9.3",
+    "jquery": "^3.7.0",
+    "leaflet": "^1.9.4",
     "randomcolor": "^0.6.2"
   }
 }
