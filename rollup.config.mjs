@@ -3,6 +3,7 @@ import path from 'path';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import scss from 'rollup-plugin-scss';
+import copy from 'rollup-plugin-copy';
 import { generateSW } from 'rollup-plugin-workbox';
 
 // `npm run build` -> `production` is true
@@ -29,6 +30,9 @@ export default {
     sourcemap: true,
   },
   plugins: [
+    copy({
+      targets: [{ src: 'src/index.html', dest: 'dist' }],
+    }),
     scss({
       importer,
       fileName: 'style.css',
