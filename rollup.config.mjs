@@ -31,7 +31,7 @@ export default {
   plugins: [
     scss({
       importer,
-      output: 'dist/style.css',
+      fileName: 'style.css',
       outputStyle: production ? 'compressed' : 'expanded',
     }),
     resolve(),
